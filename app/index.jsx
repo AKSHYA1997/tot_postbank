@@ -7,6 +7,7 @@ import { SignedIn, SignedOut } from '@clerk/clerk-react';
 import * as SecureStore from "expo-secure-store";
 import { NavigationContainer } from "@react-navigation/native"
 import { useFonts } from 'expo-font';
+import HomeScreen from './Screens/HomeScreen/HomeScreen';
 
 const tokenCache = {
   async getToken(key) {
@@ -33,19 +34,11 @@ export default function App() {
   });
 
   return (
-    <ClerkProvider tokenCache={tokenCache} publishableKey='pk_test_bWFnbmV0aWMtYnVnLTU0LmNsZXJrLmFjY291bnRzLmRldiQ'>
+    // <ClerkProvider tokenCache={tokenCache} publishableKey='pk_test_bWFnbmV0aWMtYnVnLTU0LmNsZXJrLmFjY291bnRzLmRldiQ'>
     <View style={styles.container}>
-      <SignedIn>
-        {/* <NavigationContainer> */}
-          <TabNavigation />
-        {/* </NavigationContainer> */}
-      </SignedIn>
-      <SignedOut>
-      <Login />
-      </SignedOut>
-      <StatusBar style="auto" />
+      <HomeScreen />
     </View>
-    </ClerkProvider>
+    // </ClerkProvider>
   );
 }
 

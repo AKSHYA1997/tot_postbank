@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import HomeScreen from '../HomeScreen/HomeScreen';
 import BookingScreen from '../BookingScreen/BookingScreen';
 import ProfileScreen from '../ProfileScreen/ProfileScreen';
 import { FontAwesome } from '@expo/vector-icons';
 import Colors from '../../Utils/Colors';
+import HomeNavigation from './HomeNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,9 +13,9 @@ export default function TabNavigation() {
   return (
     <Tab.Navigator screenOptions={{
       headerShown:false,
-      tabBarActiveTintColor:Colors.PRIMARY
+      tabBarActiveTintColor: 'red'
       }}>
-        <Tab.Screen name='home' component={HomeScreen} 
+        <Tab.Screen name='home' component={HomeNavigation} 
         options={{
           tabBarLabel:({color}) => (
             <Text style={{color:color, fontSize:12, marginTop:4}}>Home</Text>
