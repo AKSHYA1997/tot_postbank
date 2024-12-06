@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import HomeNavigation from '../Navigations/HomeNavigation';
 import BookingScreen from '../BookingScreen/BookingScreen';
 import { FontAwesome } from '@expo/vector-icons';
+import CommunityScreen from './Community/CommunityScreen';
 
 const accounts = [
   {
@@ -84,84 +85,7 @@ const HomeScreen = () => {
           </TouchableOpacity>
         ))}
       </View> */}
-          <Tab.Navigator screenOptions={{
-      headerShown:false,
-      tabBarActiveTintColor: '#003366',
-      tabBarInactiveTintColor: '#bcbcbc'
-      }}>
-        <Tab.Screen name='Overview' component={BookingScreen} 
-        options={{
-          tabBarLabel:({color}) => (
-            <Text style={{color:color, fontSize:9.5, marginTop:4}}>Overview</Text>
-          ), tabBarIcon:({color,size}) => (
-            <Image
-            source={require('../../../assets/icons/icon.jpg')}
-            style={{width: 30, height: 30, borderRadius: 7}}
-          />
-          )
-        }}
-        />
-        <Tab.Screen name='Transfer' component={BookingScreen} 
-         options={{
-          tabBarLabel:({color}) => (
-            <Text style={{color:color, fontSize:9.5, marginTop:4}}>Transfer</Text>
-          ), tabBarIcon:() => (
-            <Image
-            source={require('../../../assets/icons/transfer1.png')}
-            style={{width: 25, height: 25}}
-          />
-          )
-        }}
-        />
-        <Tab.Screen name='Invest' component={BookingScreen} 
-         options={{
-          tabBarLabel:({color}) => (
-            <Text style={{color:color, fontSize:9.5, marginTop:4}}>Invest</Text>
-          ), tabBarIcon:() => (
-            <Image
-            source={require('../../../assets/icons/invest.png')}
-            style={{width: 25, height: 25}}
-          />
-          )
-        }}        
-        />
-                <Tab.Screen name='Products' component={BookingScreen} 
-         options={{
-          tabBarLabel:({color}) => (
-            <Text style={{color:color, fontSize:9.5, marginTop:4}}>Products</Text>
-          ), tabBarIcon:() => (
-            <Image
-            source={require('../../../assets/icons/products.png')}
-            style={{width: 25, height: 25}}
-          />
-          )
-        }}        
-        />
-                <Tab.Screen name='Services' component={BookingScreen} 
-         options={{
-          tabBarLabel:({color}) => (
-            <Text style={{color:color, fontSize:9.5, marginTop:4}}>Services</Text>
-          ), tabBarIcon:() => (
-            <Image
-            source={require('../../../assets/icons/service.png')}
-            style={{width: 25, height: 25}}
-          />
-          )
-        }}        
-        />
-                        <Tab.Screen name='Community' component={BookingScreen} 
-         options={{
-          tabBarLabel:({color}) => (
-            <Text style={{color:color, fontSize:9.5, marginTop:4}}>Community</Text>
-          ), tabBarIcon:() => (
-            <Image
-            source={require('../../../assets/icons/community.png')}
-            style={{width: 25, height: 25}}
-          />
-          )
-        }}        
-        />
-    </Tab.Navigator>
+
     </View>
     
   );
