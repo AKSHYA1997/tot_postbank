@@ -3,13 +3,13 @@ export const colors = {
   darkgrey: "#3A3A3D",
   grey: "#818384",
   lightgrey: "#D7DADC",
-  primary: "#003366",
+  primary: "#538D4E",
   secondary: "#FFD700",
 };
 
 export const colorsToEmoji = {
   [colors.darkgrey]: "⬛",
-  [colors.primary]: "🟦",
+  [colors.primary]: "🟩",
   [colors.secondary]: "🟨",
 };
 

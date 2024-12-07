@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
 
   map: {
     alignSelf: "stretch",
-    marginVertical: 20,
+    marginVertical: 30,
   },
   row: {
     alignSelf: "stretch",
@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: colors.darkgrey,
     flex: 1,
-    maxWidth: 70,
+    maxWidth: 60,
     aspectRatio: 1,
     margin: 3,
     justifyContent: "center",
