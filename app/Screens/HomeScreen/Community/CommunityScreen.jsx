@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList, Image, ScrollView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import Heading from '../../../Components/Heading';
+import { useNavigation } from '@react-navigation/native';
 
 const categories = [
   { id: '1', name: 'Challenges', icon: require('../../../../assets/icons/cc1.png'), iconName: "users" },
@@ -19,6 +20,9 @@ const generalCleaning = [
 ];
 
 const CommunityScreen = () => {
+
+    const navigation = useNavigation();
+
   const renderService = ({ item }) => (
     <View style={styles.serviceContainer}>
       <TouchableOpacity>
@@ -66,7 +70,11 @@ const CommunityScreen = () => {
       <Text style={styles.sectionTitle}>Categories</Text>
       <View style={styles.categoriesGrid}>
         {categories.map((category) => (
-          <TouchableOpacity key={category.id} style={styles.categoryItem}>
+          <TouchableOpacity key={category.id} style={styles.categoryItem} onPress={() => {
+            if (category.name === 'Gamify') {
+              navigation.navigate('Gamify'); // Navigate to GameScreen when Gamify is clicked
+            }
+          }}>
             <View style={styles.iconContainer}>
               {/* <Image source={category.icon} style={styles.icon} /> */}
               <FontAwesome name={category.iconName} size={24} color="#ffffff" />

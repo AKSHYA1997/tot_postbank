@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, FlatList } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import HomeNavigation from '../Navigations/HomeNavigation';
+import HomeNavigation from './Community/HomeNavigation';
 import BookingScreen from '../BookingScreen/BookingScreen';
 import { FontAwesome } from '@expo/vector-icons';
 import CommunityScreen from './Community/CommunityScreen';

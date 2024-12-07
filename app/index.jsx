@@ -11,6 +11,7 @@ import HomeScreen from './Screens/HomeScreen/HomeScreen';
 import BookingScreen from './Screens/BookingScreen/BookingScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import CommunityScreen from './Screens/HomeScreen/Community/CommunityScreen';
+import HomeNavigation from './Screens/HomeScreen/Community/HomeNavigation';
 
 const tokenCache = {
   async getToken(key) {
@@ -82,7 +83,7 @@ export default function App() {
           )
         }}        
         />
-                                <Tab.Screen name='Community' component={CommunityScreen} 
+                                <Tab.Screen name='Community' component={HomeNavigation} 
          options={{
           tabBarLabel:({color}) => (
             <Text style={{color:color, fontSize:9.5, marginTop:4}}>Community</Text>

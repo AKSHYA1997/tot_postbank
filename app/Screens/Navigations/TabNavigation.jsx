@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import BookingScreen from '../BookingScreen/BookingScreen';
 import { FontAwesome } from '@expo/vector-icons';
 import Colors from '../../Utils/Colors';
-import HomeNavigation from './HomeNavigation';
+import HomeNavigation from '../HomeScreen/Community/HomeNavigation';
 
 const Tab = createBottomTabNavigator();
 
