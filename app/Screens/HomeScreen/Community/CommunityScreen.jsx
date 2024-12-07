@@ -1,20 +1,21 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList, Image, ScrollView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import Heading from '../../../Components/Heading';
 
-const services = [
-  { id: '1', name: 'General Cleaning', icon: require('../../../../assets/icons/help.png') },
-  { id: '2', name: 'Healthcare at Home', icon: require('../../../../assets/icons/help.png') },
-  { id: '3', name: 'Moving & Storage', icon: require('../../../../assets/icons/help.png') },
-  { id: '4', name: 'AC Services', icon: require('../../../../assets/icons/help.png') },
-  { id: '5', name: 'Pest Control and Gardening', icon: require('../../../../assets/icons/help.png') },
-  { id: '6', name: 'Maintenance & Handyman', icon: require('../../../../assets/icons/help.png') },
+const categories = [
+  { id: '1', name: 'Challenges', icon: require('../../../../assets/icons/cc1.png'), iconName: "users" },
+  { id: '2', name: 'Learnings', icon: require('../../../../assets/icons/cc2.png'), iconName: "book"  },
+  { id: '3', name: 'Gamify', icon: require('../../../../assets/icons/cc3.png'), iconName: "gamepad"  },
+  { id: '4', name: 'Sustainablity', icon: require('../../../../assets/icons/cc4.png'), iconName: "tree"  },
+//   { id: '5', name: 'Others', icon: require('../../../../assets/icons/c5.png') }
 ];
 
 const generalCleaning = [
-  { id: '1', name: 'Home Cleaning', image: require('../../../../assets/icons/volunteer.jpg') },
-  { id: '2', name: 'Carpet Cleaning', image: require('../../../../assets/icons/volunteer.jpg') },
-  { id: '3', name: 'Deep Cleaning', image: require('../../../../assets/icons/volunteer.jpg') },
+    { id: '1', name: '#ThePowerOfMany', image: require('../../../../assets/icons/v2.jpg') },
+  { id: '2', name: '#TogetherWeGrow', image: require('../../../../assets/icons/v3.jpg') },
+  { id: '3', name: '#SustainableFuturesStartWithUs', image: require('../../../../assets/icons/volunteer.jpg') },
+  { id: '4', name: '#ShareSupportSucceed', image: require('../../../../assets/icons/v1.webp') }
 ];
 
 const CommunityScreen = () => {
@@ -30,7 +31,9 @@ const CommunityScreen = () => {
   const renderCleaningService = ({ item }) => (
     <View style={styles.cleaningCard}>
       <Image source={item.image} style={styles.cleaningImage} />
+      <View style={styles.textOverlay}>
       <Text style={styles.cleaningText}>{item.name}</Text>
+      </View>
     </View>
   );
 
@@ -59,24 +62,22 @@ const CommunityScreen = () => {
       </View>
 
       {/* Service Section */}
-      <View style={styles.serviceSection}>
-        <View style={styles.serviceHeader}>
-          <Text style={styles.sectionTitle}>Choose a service</Text>
-          <TouchableOpacity>
-            <Text style={styles.viewAll}>View all services</Text>
+      <ScrollView>
+      <Text style={styles.sectionTitle}>Categories</Text>
+      <View style={styles.categoriesGrid}>
+        {categories.map((category) => (
+          <TouchableOpacity key={category.id} style={styles.categoryItem}>
+            <View style={styles.iconContainer}>
+              {/* <Image source={category.icon} style={styles.icon} /> */}
+              <FontAwesome name={category.iconName} size={24} color="#ffffff" />
+            </View>
+            <Text style={styles.categoryName}>{category.name}</Text>
           </TouchableOpacity>
-        </View>
-        <FlatList
-          data={services}
-          renderItem={renderService}
-          keyExtractor={(item) => item.id}
-          numColumns={3}
-          contentContainerStyle={styles.serviceList}
-        />
+        ))}
       </View>
 
       {/* General Cleaning Section */}
-      <View style={styles.cleaningSection}>
+      {/* <View style={styles.cleaningSection}>
         <Text style={styles.sectionTitle}>General Cleaning</Text>
         <FlatList
           data={generalCleaning}
@@ -85,7 +86,21 @@ const CommunityScreen = () => {
           horizontal
           showsHorizontalScrollIndicator={false}
         />
-      </View>
+      </View> */}
+
+
+   
+      <Text style={styles.sectionTitle}>Our Customer Club</Text>
+      <View style={styles.cleaningSection}>
+        <FlatList
+          data={generalCleaning}
+          renderItem={renderCleaningService}
+          keyExtractor={(item) => item.id}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+</View>
+      </ScrollView>
     </View>
   );
 };
@@ -166,7 +181,7 @@ searchBtn: {
     marginBottom: 16
   },
   bannerImage: {
-    width: '90%',
+    width: '92%',
     height: 160,
     borderRadius: 10,
     boxShadow: '0 10px 10px 0 rgba(0, 0, 0, 0.5), 0 10px 20px 0 rgba(0, 0, 0, 0.19)'
@@ -183,6 +198,7 @@ searchBtn: {
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
+    padding: 16
   },
   viewAll: {
     color: '#003366',
@@ -208,11 +224,11 @@ searchBtn: {
   },
   cleaningSection: {
     paddingHorizontal: 16,
-    marginTop: 16,
+    marginTop: 2,
   },
   cleaningCard: {
     width: 120,
-    height: 100,
+    height: 130,
     marginRight: 12,
     borderRadius: 8,
     overflow: 'hidden',
@@ -221,16 +237,31 @@ searchBtn: {
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 2,
+    position: 'relative'
   },
   cleaningImage: {
     width: '100%',
-    height: '70%',
+    height: '100%',
+  },
+  textOverlay: {
+    position: 'absolute', // Position text over the image
+    top: 0, // Adjust based on where you want the text
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center', // Center the text vertically
+    alignItems: 'center', // Center the text horizontally
+    backgroundColor: 'rgba(0, 51, 102, 0.4)', // Optional: Add a semi-transparent background for better readability
+    height: '30%',
+    marginTop: 90
   },
   cleaningText: {
-    fontSize: 14,
+    fontSize: 12,
+    fontWeight: 'bold',
     textAlign: 'center',
     marginTop: 4,
-    color: '#333',
+    color: '#FFF',
+    zIndex: 10
   },
   bottomNav: {
     flexDirection: 'row',
@@ -251,6 +282,36 @@ searchBtn: {
     color: '#FFF',
     marginTop: 4,
   },
+  categoriesGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between'
+  },
+  categoryItem: {
+    width: '25%',
+    alignItems: 'center',
+    marginBottom: 10
+  },
+  iconContainer: {
+    width: 60,
+    height: 60,
+    backgroundColor: '#FFD700',
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  icon: {
+    width: 35,
+    height: 35,
+    borderRadius: 10,
+    backgroundColor: '#FFD700',
+  },
+  categoryName: {
+    fontSize: 10,
+    color: '#02155a', // Dark blue text
+    marginTop: 6,
+    textAlign: 'center',
+  }
 });
 
 export default CommunityScreen;
