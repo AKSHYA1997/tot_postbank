@@ -3,10 +3,11 @@ import { View, Text, TextInput, TouchableOpacity, Image, FlatList, StyleSheet } 
 import { LinearGradient } from 'expo-linear-gradient'; 
 import { FontAwesome } from '@expo/vector-icons';
 import { ScrollView } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 
 
 const ChallengeScreen = () => {
-
+    const navigation = useNavigation();
     const [searchText, setSearchText] = useState(''); // Search filter
     const [sortAscending, setSortAscending] = useState(true); // Sorting flag
   const featuredItems = [
@@ -155,7 +156,11 @@ const ChallengeScreen = () => {
         renderItem={({ item }) => (
           <TouchableOpacity
             style={styles.volunteerCard}
-            onPress={() => handleCardPress(item)}
+            onPress={() => {
+                if (item.id === '1') {
+                    navigation.navigate('Volunteer'); // Navigate to GameScreen when Gamify is clicked
+                  }
+            }}
           >
             <Image source={item.image} style={styles.volunteerImage} />
             <View style={styles.cardContent}>

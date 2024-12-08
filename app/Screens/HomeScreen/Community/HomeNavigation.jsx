@@ -6,6 +6,7 @@ import BusinessListByCategoryScreen from '../../BusinessListByCategoryScreen/Bus
 import CommunityScreen from './CommunityScreen';
 import GameScreen from './GameScreen';
 import ChallengeScreen from './ChallengeScreen';
+import VolunteerScreen from './VolunteerScreen';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,7 @@ export default function HomeNavigation() {
     <Stack.Screen name='community' component={CommunityScreen} options={{ headerShown: false }} />
     <Stack.Screen name='Gamify' component={GameScreen} options={{ headerShown: false }} />
     <Stack.Screen name='Challenge' component={ChallengeScreen} options={{ headerShown: false }} />
+    <Stack.Screen name='Volunteer' component={VolunteerScreen} />
    </Stack.Navigator>
   )
 }
