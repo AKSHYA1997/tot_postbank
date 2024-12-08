@@ -1,8 +1,11 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import { FontAwesome, AntDesign, Entypo, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const PreChallengeScreen = () => {
+
+    const navigation = useNavigation();
   const galleryImages = [
     require('../../../../assets/icons/vv5.jpg'),
     require('../../../../assets/icons/v1.jpg'),
@@ -63,7 +66,10 @@ const PreChallengeScreen = () => {
 
       <View style={styles.joinBtn}>
         <TouchableOpacity style={styles.smallButton}>
-          <Text style={styles.smallButtonText}>Join</Text>
+          <Text style={styles.smallButtonText} onPress={() => {
+              navigation.navigate('Questions'); // Navigate to GameScreen when Gamify is clicked
+            }
+          }>Join</Text>
         </TouchableOpacity>
         </View>
       </View>
