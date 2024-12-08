@@ -74,6 +74,9 @@ const CommunityScreen = () => {
             if (category.name === 'Gamify') {
               navigation.navigate('Gamify'); // Navigate to GameScreen when Gamify is clicked
             }
+            if (category.name === 'Challenges') {
+              navigation.navigate('Challenge'); // Navigate to GameScreen when Gamify is clicked
+            }
           }}>
             <View style={styles.iconContainer}>
               {/* <Image source={category.icon} style={styles.icon} /> */}

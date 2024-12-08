@@ -5,6 +5,7 @@ import HomeScreen from '../HomeScreen';
 import BusinessListByCategoryScreen from '../../BusinessListByCategoryScreen/BusinessListByCategoryScreen';
 import CommunityScreen from './CommunityScreen';
 import GameScreen from './GameScreen';
+import ChallengeScreen from './ChallengeScreen';
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,7 @@ export default function HomeNavigation() {
    <Stack.Navigator>
     <Stack.Screen name='community' component={CommunityScreen} options={{ headerShown: false }} />
     <Stack.Screen name='Gamify' component={GameScreen} options={{ headerShown: false }} />
+    <Stack.Screen name='Challenge' component={ChallengeScreen} options={{ headerShown: false }} />
    </Stack.Navigator>
   )
 }
