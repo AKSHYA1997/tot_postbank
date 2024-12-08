@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList, Image, ScrollView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import Heading from '../../../Components/Heading';
 import { useNavigation } from '@react-navigation/native';
+import { Asset } from 'expo-asset';
 
 const categories = [
   { id: '1', name: 'Challenges', icon: require('../../../../assets/icons/cc1.png'), iconName: "users" },
@@ -22,6 +23,16 @@ const generalCleaning = [
 const CommunityScreen = () => {
 
     const navigation = useNavigation();
+    const [imageLoaded, setImageLoaded] = useState(false);
+
+    useEffect(() => {
+      const preloadImage = async () => {
+        // Preload the image before rendering
+        await Asset.loadAsync(require('../../../../assets/icons/banner2.png'));
+        setImageLoaded(true);
+      };
+      preloadImage();
+    }, []);
 
   const renderService = ({ item }) => (
     <View style={styles.serviceContainer}>

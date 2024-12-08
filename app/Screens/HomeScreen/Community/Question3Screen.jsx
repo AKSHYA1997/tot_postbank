@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import ProgressBar from './ProgessBar';
 
 const Question3Screen = ({ navigation }) => {
-  const timePreferences = ['Weekday', 'Weekends', 'Any Day'];
+  const timePreferences = ['Weekdays', 'Weekends', 'Any Day'];
   const [selectedOption, setSelectedOption] = useState(null); 
 
   return (

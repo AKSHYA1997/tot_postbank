@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import { FontAwesome, AntDesign, Entypo, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { Asset } from 'expo-asset';
 
 const PreChallengeScreen = () => {
 
     const navigation = useNavigation();
+    const [imageLoaded, setImageLoaded] = useState(false);
   const galleryImages = [
     require('../../../../assets/icons/vv5.jpg'),
     require('../../../../assets/icons/v1.jpg'),
@@ -13,14 +15,26 @@ const PreChallengeScreen = () => {
     require('../../../../assets/icons/vv4.jpg'),
   ];
 
+  useEffect(() => {
+    const preloadImage = async () => {
+      // Preload the image before rendering
+      await Asset.loadAsync(require('../../../../assets/icons/vb2.png'));
+      setImageLoaded(true);
+    };
+    preloadImage();
+  }, []);
+
   return (
     <ScrollView style={styles.container}>
 
       {/* Image */}
-      <Image
+      {imageLoaded ? ( <Image
         source={require('../../../../assets/icons/vb2.png')} // Replace with your image URL
         style={styles.mainImage}
       />
+    ) : (
+        <View style={styles.imagePlaceholder} /> // Placeholder while loading
+      )}
 
       {/* Content */}
       <View style={styles.content}>
@@ -33,34 +47,27 @@ const PreChallengeScreen = () => {
 
         {/* About Section */}
         <View style={styles.aboutSection}>
-          <Text style={styles.subheading}>How It Works:</Text>
+          <Text style={styles.subheading}><FontAwesome name="sign-in" size={20} color="#004aad" /> How It Works:</Text>
 
          
-          <Text style={{fontWeight: 'bold', color: '#666',}}>Step 1: <FontAwesome name="sign-in" size={17} color="#004aad" /> Customer Sign-Up </Text>
-          <Text style={styles.description}>Participants will need to sign up for the challenge by clicking "Join" below in the Postbank app. Upon signing up, participants will gain access to a list of local registered community organizations where they can volunteer.</Text>
-<Text style={{fontWeight: 'bold', color: '#666',}}>Step 2: <MaterialIcons name="volunteer-activism" size={17} color="#004aad" /> Volunteering </Text>
-          <Text style={styles.description}>Participants are encouraged to volunteer their time and skills at a community organization of their choice.</Text>
-
-
-          <Text style={{fontWeight: 'bold', color: '#666',}}>Step 3: <Entypo name="upload-to-cloud" size={17} color="#004aad" /> Upload Volunteer Certificate </Text>
-          <Text style={styles.description}>Once a participant completes their volunteering experience, a Volunteer Certificate is required to be uploaded to the Postbank app to confirm participation. </Text>
-
-
-          <Text style={{fontWeight: 'bold', color: '#666',}}>Step 4: <Entypo name="share" size={17} color="#004aad" /> Share on Social media </Text>
-          <Text style={styles.description}>The final step to the challenge is for the participants to share their progress with their communities on a social media platform of their choice using the #PostbankCommunity. </Text>
+          
+          <Text style={styles.description}><Text style={{fontWeight: 'bold', color: '#666',}}>Step 1:</Text> Sign up and access organizations</Text>
+          <Text style={styles.description}><Text style={{fontWeight: 'bold', color: '#666',}}>Step 2:</Text> Volunteer your time</Text>
+          <Text style={styles.description}><Text style={{fontWeight: 'bold', color: '#666',}}>Step 3:</Text> Upload Volunteer Certificate</Text>
+          <Text style={styles.description}><Text style={{fontWeight: 'bold', color: '#666',}}>Step 4:</Text> Share on social media</Text>
           <Text style={styles.readMore}>Once all step are complete and participation is verified, access is granted to the reward selection portal. </Text>
         </View>
 
 
         <View style={styles.aboutSection}>
-          <Text style={styles.subheading}>Rewards:
+          <Text style={styles.subheading}><FontAwesome5 name="gift" size={20} color="#004aad" /> Rewards:
           </Text>
-          <Text style={styles.description}><FontAwesome5 name="gift" size={17} color="#004aad" /> Exclusive experiences, such as tickets to Eintracht games, concerts, and other events</Text>
-          <Text style={styles.description}><FontAwesome5 name="gift" size={17} color="#004aad" /> Reduced lending rates for mortgages and loans</Text>
-          <Text style={styles.description}><FontAwesome5 name="gift" size={17} color="#004aad" /> Boosted interest rates on savings accounts</Text>
-          <Text style={styles.description}><FontAwesome5 name="gift" size={17} color="#004aad" /> Account fee waivers for a specified period</Text>
-          <Text style={styles.description}><FontAwesome5 name="gift" size={17} color="#004aad" /> €50 donations to community initiatives of the customer’s choice</Text>
-          <Text style={styles.description}><FontAwesome5 name="gift" size={17} color="#004aad" /> 50 discount on the next purchase at the Rewe store</Text>
+          <Text style={styles.description}>● Discount on exclusive experiences (e.g., Eintracht tickets)</Text>
+          <Text style={styles.description}>● Discount on loans rates</Text>
+          <Text style={styles.description}>● Boosted interest rates on savings</Text>
+          <Text style={styles.description}>● Account fee waivers</Text>
+          <Text style={styles.description}>● €50 donations to community initiatives</Text>
+          <Text style={styles.description}>● €50 discount at Rewe store</Text>
         </View>
 
 
@@ -148,7 +155,7 @@ const styles = StyleSheet.create({
     color: '#003366'
   },
   description: {
-    fontSize: 14,
+    fontSize: 13,
     color: '#666',
     lineHeight: 20,
   },
@@ -184,6 +191,11 @@ const styles = StyleSheet.create({
     color: '#02155a', // Dark blue text
     fontWeight: 'bold',
     letterSpacing: 3,
+  },
+  imagePlaceholder: {
+    width: '100%',
+    height: 200,
+    backgroundColor: '#E0E0E0', // Placeholder background color
   },
 });
 
